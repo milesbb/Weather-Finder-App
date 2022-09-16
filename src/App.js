@@ -5,8 +5,8 @@ import Earth from "./components/Earth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "./components/MainPage";
 import Title from "./components/Title";
-import City from "./components/City";
 import Favourites from "./components/Favourites";
+import CityWeather from "./components/CityWeather";
 
 function App() {
   return (
@@ -18,9 +18,9 @@ function App() {
         </Canvas>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<MainPage className="w-50" />} />
-            <Route path="/:cityName" element={<City />} />
-            <Route path="/favourites" element={<Favourites />} />
+            <Route path="/" element={<MainPage className="w-50 mx-auto" />} />
+            <Route path="/:cityName" element={<CityWeather className="w-50 mx-auto" />} />
+            <Route path="/favourites" element={<Favourites className="w-50 mx-auto" />} />
           </Routes>
         </BrowserRouter>
       </div>

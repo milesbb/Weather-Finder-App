@@ -56,11 +56,9 @@ const Earth = (props) => {
         {/* controls */}
         <OrbitControls
           enableZoom={true}
-          enablePan={true}
-          enableRotate={true}
+          enablePan={false}
+          enableRotate={false}
           zoomSpeed={0.1}
-          panSpeed={0.1}
-          rotateSpeed={0.1}
         />
       </mesh>
       {/* Lighting ambient and pointed */}
