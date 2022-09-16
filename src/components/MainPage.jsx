@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import City from "./City";
+import Loading from "./Loading";
+import WarningSign from "./WarningSign";
 
 const MainPage = () => {
   const [query, setQuery] = useState("");
   const [cities, setCities] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errorOccurred, setError] = useState([false, ""]);
 
   const baseEndpoint = "http://api.openweathermap.org/geo/1.0/direct?q=";
 
@@ -16,7 +20,8 @@ const MainPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
+    setError([false, ""]);
     try {
       const response = await fetch(
         "http://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -25,21 +30,25 @@ const MainPage = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        setCities(data);
-        cityList = data;
-        console.log(data);
-        console.log("city list");
-        console.log(cityList);
-        console.log(cities);
+        if (data.length === 0) {
+          setError("No Results");
+        } else {
+          setCities(data);
+          cityList = data;
+          console.log(data);
+          console.log("city list");
+          console.log(cityList);
+          console.log(cities);
+        }
       } else {
-        alert("Error fetching results");
+        setError("Error fetching results");
       }
     } catch (error) {
-      console.log(error);
+      setError(error);
+    } finally {
+      setLoading(false);
     }
   };
-
-  console.log(cityList);
 
   return (
     <div className="text-white">
@@ -54,7 +63,14 @@ const MainPage = () => {
         />
       </Form>
 
-      {(cities.length !== []) &&
+      {loading === true && <Loading />}
+
+      {loading === false && errorOccurred[0] === true && (
+        <WarningSign text={errorOccurred[1]} />
+      )}
+
+      {loading === false &&
+        errorOccurred[0] === false &&
         cities.map((cityData, i) => <City key={i} data={cityData} />)}
     </div>
   );
