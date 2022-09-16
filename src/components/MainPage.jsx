@@ -51,10 +51,9 @@ const MainPage = () => {
   };
 
   return (
-    <div className="text-white">
-      <Container></Container>
+    <div className="text-white mt-5">
       <h1 className="mt-5">Search for your City!</h1>
-      <Form onSubmit={handleSubmit}>
+      <Form className="mt-3" onSubmit={handleSubmit}>
         <Form.Control
           type="search"
           value={query}

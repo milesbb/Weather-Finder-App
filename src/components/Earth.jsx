@@ -8,7 +8,7 @@ import EarthNormalMap from "../assets/8k_earth_normal_map.jpg";
 // specular - shiny-ness
 import EarthSpecularMap from "../assets/8k_earth_specular_map.jpg";
 import EarthCloudsMap from "../assets/8k_earth_clouds.jpg";
-import { TextureLoader } from "three";
+import { Camera, TextureLoader } from "three";
 
 const Earth = (props) => {
   // loads and assigns textures to variables
@@ -33,7 +33,7 @@ const Earth = (props) => {
     <>
       {/* Meshes - Skeletons and Materials */}
       {/* clouds */}
-      <mesh ref={cloudsRef} position={[0, 0, 3]}>
+      <mesh ref={cloudsRef} position={[0, 0, 0]}>
         <sphereGeometry args={[1.005, 100, 100]} />
         <meshPhongMaterial
           map={cloudsMap}
@@ -44,7 +44,7 @@ const Earth = (props) => {
         />
       </mesh>
       {/* actual earth */}
-      <mesh ref={earthRef} position={[0, 0, 3]}>
+      <mesh ref={earthRef} position={[0, 0, 0]}>
         <sphereGeometry args={[1, 100, 100]} />
         <meshPhongMaterial specularMap={specularMap} />
         <meshStandardMaterial
@@ -56,14 +56,15 @@ const Earth = (props) => {
         {/* controls */}
         <OrbitControls
           enableZoom={true}
-          enablePan={false}
-          enableRotate={false}
-          zoomSpeed={0.1}
+          enablePan={true}
+          enableRotate={true}
+          zoomSpeed={0.6}
         />
       </mesh>
       {/* Lighting ambient and pointed */}
       <ambientLight intensity={1} />
       <pointLight color="#f6f3ea" position={[2, 0, 5]} intensity={1.2} />
+      
     </>
   );
 };

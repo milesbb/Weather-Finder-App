@@ -4,6 +4,10 @@ A React Weather App that uses Open Weather API to load and display the weather o
 
 Also including interactive 3js animation
 
-Pictured: City Weather Info Page
+Home page with Search:
 
 ![Project Image](./src/assets/readmeimg.png)
+
+Weather Data Display
+
+![Project Image](./src/assets/readmeimg1.png)
