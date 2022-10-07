@@ -2,7 +2,7 @@
 
 A React Weather App that uses Open Weather API to load and display the weather of a user selected city
 
-Also including interactive 3js animation
+Also including interactive 3js animation (rotateable Earth background)
 
 Home page with Search:
 
